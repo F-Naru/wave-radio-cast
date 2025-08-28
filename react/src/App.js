@@ -57,7 +57,7 @@ function App() {
       const formattedDate = dateTime.replace(/:/g, '-');
       
       try {
-        const response = await axios.get('http://127.0.0.1:5000/api/search', {
+        const response = await axios.get(`${process.env.REACT_APP_API_URL}/api/search`, {
           params: {
             frequency: selectedFrequency,
             date: formattedDate,
@@ -70,7 +70,7 @@ function App() {
             title: '再生準備完了',
             description: 'ファイルが見つかりました。',
             status: 'success',
-            duration: 3000,
+            duration: 1000,
             isClosable: true,
           });
         } else {
@@ -78,7 +78,7 @@ function App() {
             title: 'ファイルが見つかりません',
             description: response.data.error,
             status: 'warning',
-            duration: 3000,
+            duration: 1000,
             isClosable: true,
           });
         }
