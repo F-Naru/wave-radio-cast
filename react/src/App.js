@@ -23,7 +23,7 @@ function App() {
   useEffect(() => {
     const fetchFrequencies = async () => {
       try {
-        const response = await axios.get('http://127.0.0.1:5000/api/frequencies');
+        const response = await axios.get(`${process.env.REACT_APP_API_URL}/api/frequencies`);
         const freqList = response.data.frequencies;
         setFrequencies(freqList);
         // リストの最初の周波数をデフォルトで選択
@@ -65,7 +65,7 @@ function App() {
         });
         
         if (response.data.success) {
-          setAudioUrl(`http://127.0.0.1:5000${response.data.url}`);
+          setAudioUrl(`${process.env.REACT_APP_API_URL}${response.data.url}`);
           toast({
             title: '再生準備完了',
             description: 'ファイルが見つかりました。',
