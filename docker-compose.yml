@@ -1,0 +1,22 @@
+
+
+services:
+  nextjs-app:
+    build:
+      context: ./nextjs-app
+      dockerfile: Dockerfile
+    ports:
+      - "3000:3000"
+    environment:
+      # コンテナ内のパスを環境変数として設定
+      # Dockerfileで /app/recordings にマウントされることを想定
+      - LOCATION_HIROSHIMAVHF=/app/recordings/hiroshimaVHF
+      - LOCATION_HIROSHIMACH=/app/recordings/hiroshimaCH
+    volumes:
+      # ホストの録音ディレクトリをコンテナにマウント
+      # ここはユーザーが実際に録音ファイルを置いているパスに置き換える必要があります
+      # 例: - C:\Users\uni7ru\Desktop\wave-radio-cast\flask\recordings\hiroshimaVHF:/app/recordings/hiroshimaVHF
+      # 例: - C:\Users\uni7ru\Desktop\wave-radio-cast\flask\recordings\hiroshimaCH:/app/recordings/hiroshimaCH
+      # ユーザーの実際のパスに合わせて変更してください
+      - C:\Users\uni7ru\Desktop\wave-radio-cast\flask\recordings\hiroshimaVHF:/app/recordings/hiroshimaVHF
+      - C:\Users\uni7ru\Desktop\wave-radio-cast\flask\recordings\hiroshimaCH:/app/recordings/hiroshimaCH
